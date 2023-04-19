@@ -8,7 +8,9 @@ class Graph:
         self.look_for = None
 
     def set_start(self, start_letter):
-        self.start = Node(start_letter, parent=None, distance=0)
+        # two ways to set the start (1st with instance_graph.start = 'A' the other one
+        # instance_graph.set_start('A)
+        self.start = start_letter
 
     def set_look_for(self, look_for_letter):
         self.look_for = look_for_letter
@@ -32,15 +34,17 @@ class Graph:
             print(key, ':', self.graph_dict[key])
 
     def dfs(self):
-        count = -1
-        visited = []
+        count = -1  # I added for counting how many edges (keep in mind nodes = edges - 1)
+        visited = []  # if smth is in this list we dont want to go there anymore
         journey = []
         stack = [(self.start, None)]  # pair (node, parent)
         while len(stack) > 0:
             popped = stack.pop()
             current_node = popped[0]
+
             count += 1
             print("we are in: ", current_node)
+
             if current_node != self.look_for:
                 visited.append(current_node)
                 journey.append(popped)
@@ -59,10 +63,10 @@ class Graph:
         journey = []
         count = -1
 
-        queue = [(self.start, None)]
+        queue = [(self.start, None)]  # instead of stack u get queue
 
         while len(queue) > 0:
-            popped = queue.pop(0)
+            popped = queue.pop(0)  # now you pop 0th element instead of the last one
             current_node = popped[0]
             count += 1
             if current_node != self.look_for:
@@ -79,6 +83,9 @@ class Graph:
                 return journey
         return -1
 
-
+    def trace_back(self):
+        journey = self.dfs()
+        # TODO: @katrina
+        return None
 
 
