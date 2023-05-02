@@ -22,6 +22,5 @@ our_graph.look_for = 'D'
 
 print("DFS: ")
 print(our_graph.dfs())
-
 #print("BFS: ")
 #print(our_graph.bfs())
